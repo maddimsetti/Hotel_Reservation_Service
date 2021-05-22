@@ -2,11 +2,17 @@ package com.hotelreservationservice;
 
 public class Hotels {
     private String hotelName;
+    int weekDayRates,weekendRates;
     private int dailyRate;
+
 
     public Hotels(String hotelName,int dailyRate) {
         this.hotelName = hotelName;
         this.dailyRate = dailyRate;
+    }
+    public Hotels (String hotelName, int weekDayRates,int weekendRates) {
+        this.weekDayRates = weekDayRates;
+        this.weekendRates = weekendRates;
     }
 
     public String getHotelName() {

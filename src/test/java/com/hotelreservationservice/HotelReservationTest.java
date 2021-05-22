@@ -29,8 +29,8 @@ public class HotelReservationTest {
      */
     @Test
     public void given3HotelsAddedToHotelReservationServiceShouldReturnCheapestHotelForGivenDateRange () {
-        Hotels lakeWood = new Hotels("LakeWood",160);
-        Hotels bridgeWood = new Hotels("BridgeWood",110);
+        Hotels lakeWood = new Hotels("LakeWood",110);
+        Hotels bridgeWood = new Hotels("BridgeWood",160);
         Hotels ridgeWood = new Hotels("RidgeWood",200);
         HotelReservationService hotelReservationService = new HotelReservationService();
         hotelReservationService.addHotels(lakeWood);
@@ -39,6 +39,25 @@ public class HotelReservationTest {
         int noOfDays = hotelReservationService.noOfDays("10 09 2020","11 09 2020");
         int result = hotelReservationService.findTheCheapestHotel(noOfDays);
         Assertions.assertEquals("110",result);
+    }
+
+    /**
+     * @description create Method for Testing the Hotel Reservation Service by Adding WeekDay and weekend rates to The ArrayList
+     *
+     */
+    @Test
+    public void given3HotelsWhenAddedWeekDayRatesAndWeekEndRatesToHotelReservationServiceShouldReturnTrue () {
+        Hotels lakeWood = new Hotels("LakeWood",110,90);
+        Hotels bridgeWood = new Hotels("BridgeWood",160,60);
+        Hotels ridgeWood = new Hotels("RidgeWood",200,150);
+        HotelReservationService hotelReservationService = new HotelReservationService();
+        hotelReservationService.addHotels(lakeWood);
+        hotelReservationService.addHotels(bridgeWood);
+        hotelReservationService.addHotels(ridgeWood);
+        List<Hotels> list = hotelReservationService.getHotelsList();
+        Assertions.assertTrue(list.contains(lakeWood));
+        Assertions.assertTrue(list.contains(bridgeWood));
+        Assertions.assertTrue(list.contains(ridgeWood));
     }
     /**
      * @description create Main Method for Passing Welcome Message For Hotel Reservation Service
